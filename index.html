@@ -1,0 +1,1947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TECHORA - Premium Tech & Gadgets</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Syne:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00ff88;
+            --secondary: #ff0055;
+            --dark: #0a0e27;
+            --darker: #050814;
+            --light: #f0f4ff;
+            --accent: #7b2cbf;
+            --glow: rgba(0, 255, 136, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.03;
+            background: 
+                radial-gradient(circle at 20% 50%, var(--primary) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, var(--secondary) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, var(--accent) 0%, transparent 50%);
+            animation: bgShift 20s ease-in-out infinite;
+        }
+
+        @keyframes bgShift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(50px, 50px) scale(1.1); }
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(10, 14, 39, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 255, 136, 0.2);
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px var(--glow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .cart-icon:hover {
+            transform: scale(1.1);
+            color: var(--primary);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--light), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: rgba(240, 244, 255, 0.8);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 50px;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px var(--glow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px var(--glow);
+        }
+
+        /* Category Filter */
+        .filter-section {
+            max-width: 1400px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            color: var(--light);
+            cursor: pointer;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-family: 'Syne', sans-serif;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary);
+            color: var(--dark);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Products Grid */
+        .products-section {
+            max-width: 1400px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s;
+            cursor: pointer;
+            animation: fadeInUp 0.6s ease-out both;
+        }
+
+        .product-card:nth-child(1) { animation-delay: 0.1s; }
+        .product-card:nth-child(2) { animation-delay: 0.2s; }
+        .product-card:nth-child(3) { animation-delay: 0.3s; }
+        .product-card:nth-child(4) { animation-delay: 0.4s; }
+        .product-card:nth-child(5) { animation-delay: 0.5s; }
+        .product-card:nth-child(6) { animation-delay: 0.6s; }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 50px var(--glow);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(255, 0, 85, 0.1));
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-category {
+            font-size: 0.75rem;
+            color: var(--primary);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--light);
+        }
+
+        .product-description {
+            font-size: 0.9rem;
+            color: rgba(240, 244, 255, 0.7);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-price {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .buy-btn {
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s;
+            font-family: 'Syne', sans-serif;
+        }
+
+        .buy-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255, 0, 85, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            border-top: 1px solid rgba(0, 255, 136, 0.2);
+            padding: 3rem 2rem;
+            margin-top: 6rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .footer-text {
+            color: rgba(240, 244, 255, 0.6);
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            color: var(--light);
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-buttons {
+                gap: 0.5rem;
+            }
+
+            .filter-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Loading Animation */
+        .hidden {
+            display: none !important;
+        }
+
+        /* Modal for Related Products */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: var(--dark);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            max-width: 900px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2rem;
+            position: relative;
+            animation: slideUp 0.4s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideOutRight {
+            from {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .close-modal:hover {
+            transform: rotate(90deg);
+            background: var(--primary);
+            color: var(--dark);
+        }
+
+        .modal-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .related-products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .related-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .related-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px var(--glow);
+        }
+
+        .related-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .related-card-info {
+            padding: 1rem;
+        }
+
+        .related-card-name {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--light);
+        }
+
+        .related-card-price {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+
+        .related-buy-btn {
+            width: 100%;
+            padding: 0.6rem;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s;
+            font-family: 'Syne', sans-serif;
+        }
+
+        .related-buy-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 0, 85, 0.4);
+        }
+
+        /* Cart Modal */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .cart-modal.active {
+            display: flex;
+        }
+
+        .cart-modal-content {
+            background: var(--dark);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            max-width: 700px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 2rem;
+            position: relative;
+            animation: slideUp 0.4s ease-out;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 15px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s;
+        }
+
+        .cart-item:hover {
+            border-color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: 700;
+            color: var(--light);
+            margin-bottom: 0.3rem;
+        }
+
+        .cart-item-category {
+            font-size: 0.75rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .cart-item-price {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .cart-item-remove {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            align-self: center;
+        }
+
+        .cart-item-remove:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(255, 0, 85, 0.4);
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: rgba(240, 244, 255, 0.6);
+        }
+
+        .cart-empty-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.3;
+        }
+
+        .cart-total {
+            border-top: 2px solid var(--primary);
+            padding-top: 1.5rem;
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-total-label {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .cart-total-price {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--primary);
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: var(--dark);
+            border: none;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.3s;
+            font-family: 'Syne', sans-serif;
+        }
+
+        .checkout-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px var(--glow);
+        }
+
+        .clear-cart-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(255, 0, 85, 0.1);
+            color: var(--secondary);
+            border: 1px solid var(--secondary);
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            transition: all 0.3s;
+            font-family: 'Syne', sans-serif;
+        }
+
+        .clear-cart-btn:hover {
+            background: var(--secondary);
+            color: white;
+        }
+
+        /* Deals Section */
+        .deals-section {
+            max-width: 1400px;
+            margin: 6rem auto 4rem;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .deals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .deal-card {
+            background: linear-gradient(135deg, rgba(255, 0, 85, 0.1), rgba(123, 44, 191, 0.1));
+            border: 2px solid var(--secondary);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.4s;
+            animation: fadeInUp 0.6s ease-out both;
+        }
+
+        .deal-card:nth-child(1) { animation-delay: 0.1s; }
+        .deal-card:nth-child(2) { animation-delay: 0.2s; }
+        .deal-card:nth-child(3) { animation-delay: 0.3s; }
+        .deal-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .deal-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--primary);
+            box-shadow: 0 25px 60px rgba(255, 0, 85, 0.4);
+        }
+
+        .deal-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--secondary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: 900;
+            font-family: 'Orbitron', sans-serif;
+            z-index: 10;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .deal-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            filter: brightness(0.9);
+            transition: all 0.4s;
+        }
+
+        .deal-card:hover .deal-image {
+            filter: brightness(1.1);
+            transform: scale(1.05);
+        }
+
+        .deal-info {
+            padding: 1.5rem;
+        }
+
+        .deal-timer {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 0.8rem;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .timer-label {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 0.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .timer-display {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .timer-unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .timer-value {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+
+        .timer-text {
+            font-size: 0.65rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 0.2rem;
+        }
+
+        .deal-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--light);
+        }
+
+        .deal-description {
+            font-size: 0.95rem;
+            color: rgba(240, 244, 255, 0.7);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .deal-prices {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .original-price {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: line-through;
+        }
+
+        .deal-price {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--secondary);
+        }
+
+        .savings {
+            background: var(--primary);
+            color: var(--dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .deal-buy-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            font-family: 'Syne', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .deal-buy-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .deal-buy-btn:hover::before {
+            left: 100%;
+        }
+
+        .deal-buy-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 0, 85, 0.5);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            max-width: 1400px;
+            margin: 6rem auto 4rem;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-info-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+            animation: fadeInUp 0.6s ease-out both;
+        }
+
+        .contact-info-card:nth-child(1) { animation-delay: 0.1s; }
+        .contact-info-card:nth-child(2) { animation-delay: 0.2s; }
+        .contact-info-card:nth-child(3) { animation-delay: 0.3s; }
+        .contact-info-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .contact-info-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--glow);
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 10px var(--glow));
+        }
+
+        .contact-info-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .contact-info-card p {
+            color: rgba(240, 244, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        .contact-social {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            font-size: 1.8rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px) scale(1.2);
+            filter: drop-shadow(0 5px 15px var(--primary));
+        }
+
+        /* Contact Form */
+        .contact-form-wrapper {
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid rgba(0, 255, 136, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            animation: fadeInUp 0.6s ease-out 0.2s both;
+        }
+
+        .form-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 15px;
+            padding: 1rem 1.2rem;
+            color: var(--light);
+            font-family: 'Syne', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 20px var(--glow);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .form-group select {
+            cursor: pointer;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(240, 244, 255, 0.4);
+        }
+
+        .submit-btn {
+            padding: 1.2rem 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: var(--dark);
+            border: none;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Syne', sans-serif;
+            margin-top: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px var(--glow);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Responsive Contact Section */
+        @media (max-width: 968px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* You May Also Like Button */
+        .view-similar-btn {
+            padding: 0.6rem 1.2rem;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-family: 'Syne', sans-serif;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+
+        .view-similar-btn:hover {
+            background: var(--primary);
+            color: var(--dark);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+
+    <header>
+        <nav>
+            <div class="logo">TECHORA</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#deals">Deals</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="cart-icon" onclick="openCart()">
+                🛒
+                <span class="cart-count">0</span>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Future Tech, Today</h1>
+        <p>Discover cutting-edge gadgets and technology that transform your digital lifestyle</p>
+        <a href="#products" class="cta-button">Explore Collection</a>
+    </section>
+
+    <section class="filter-section">
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-category="all">All Products</button>
+            <button class="filter-btn" data-category="smartphones">Smartphones</button>
+            <button class="filter-btn" data-category="laptops">Laptops</button>
+            <button class="filter-btn" data-category="audio">Audio</button>
+            <button class="filter-btn" data-category="wearables">Wearables</button>
+            <button class="filter-btn" data-category="accessories">Accessories</button>
+        </div>
+    </section>
+
+    <section class="products-section" id="products">
+        <h2 class="section-title">Featured Products</h2>
+        <div class="products-grid" id="productsGrid">
+            <!-- Products will be inserted here by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Deals Section -->
+    <section class="deals-section" id="deals">
+        <h2 class="section-title">🔥 Hot Deals & Offers</h2>
+        <div class="deals-grid" id="dealsGrid">
+            <!-- Deals will be inserted here by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-info-card">
+                    <div class="contact-icon">📧</div>
+                    <h3>Email Us</h3>
+                    <p>support@techora.com</p>
+                    <p>sales@techora.com</p>
+                </div>
+                <div class="contact-info-card">
+                    <div class="contact-icon">📱</div>
+                    <h3>Call Us</h3>
+                    <p>+1 (555) 123-4567</p>
+                    <p>Mon-Fri: 9AM - 6PM EST</p>
+                </div>
+                <div class="contact-info-card">
+                    <div class="contact-icon">📍</div>
+                    <h3>Visit Us</h3>
+                    <p>123 Tech Street</p>
+                    <p>Silicon Valley, CA 94025</p>
+                </div>
+                <div class="contact-info-card">
+                    <div class="contact-icon">💬</div>
+                    <h3>Social Media</h3>
+                    <div class="contact-social">
+                        <a href="#" class="social-icon">📘</a>
+                        <a href="#" class="social-icon">🐦</a>
+                        <a href="#" class="social-icon">📷</a>
+                        <a href="#" class="social-icon">📺</a>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form-wrapper">
+                <h3 class="form-title">Send Us a Message</h3>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a subject</option>
+                            <option value="product">Product Inquiry</option>
+                            <option value="support">Customer Support</option>
+                            <option value="partnership">Partnership</option>
+                            <option value="feedback">Feedback</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required placeholder="Tell us how we can help you..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        Send Message ✉️
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">TECHORA</div>
+            <p class="footer-text">Your trusted source for premium tech and gadgets</p>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook">📘</a>
+                <a href="#" aria-label="Twitter">🐦</a>
+                <a href="#" aria-label="Instagram">📷</a>
+                <a href="#" aria-label="YouTube">📺</a>
+            </div>
+            <p class="footer-text">© 2024 TECHORA. Amazon Affiliate Disclosure: As an Amazon Associate, we earn from qualifying purchases.</p>
+        </div>
+    </footer>
+
+    <!-- Modal for Related Products -->
+    <div class="modal" id="relatedModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">×</button>
+            <h2 class="modal-title">You May Also Like</h2>
+            <div class="related-products-grid" id="relatedProductsGrid">
+                <!-- Related products will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-modal-content">
+            <button class="close-modal" onclick="closeCart()">×</button>
+            <h2 class="modal-title">🛒 Your Cart</h2>
+            <div id="cartItems">
+                <!-- Cart items will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Product Data (Replace with your actual Amazon affiliate links)
+        const products = [
+            {
+                id: 1,
+                name: "iPhone 15 Pro Max",
+                category: "smartphones",
+                price: "$1,199",
+                description: "The ultimate iPhone with titanium design, A17 Pro chip, and ProMotion display.",
+                image: "https://images.unsplash.com/photo-1592286927505-2fd0d82bfaa7?w=500",
+                amazonLink: "https://amazon.com/your-affiliate-link-1"
+            },
+            {
+                id: 2,
+                name: "MacBook Pro M3",
+                category: "laptops",
+                price: "$1,999",
+                description: "Supercharged by M3 chip. Liquid Retina XDR display. Up to 22 hours battery life.",
+                image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500",
+                amazonLink: "https://amazon.com/your-affiliate-link-2"
+            },
+            {
+                id: 3,
+                name: "AirPods Pro (2nd Gen)",
+                category: "audio",
+                price: "$249",
+                description: "Active noise cancellation, adaptive audio, and personalized spatial audio.",
+                image: "https://images.unsplash.com/photo-1606841837239-c5a1a4a07af7?w=500",
+                amazonLink: "https://amazon.com/your-affiliate-link-3"
+            },
+            {
+                id: 4,
+                name: "Apple Watch Ultra 2",
+                category: "wearables",
+                price: "$799",
+                description: "Rugged titanium design, precision dual-frequency GPS, up to 36 hours battery.",
+                image: "https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?w=500",
+                amazonLink: "https://amazon.com/your-affiliate-link-4"
+            },
+            {
+                id: 5,
+                name: "Samsung Galaxy S24 Ultra",
+                category: "smartphones",
+                price: "$1,299",
+                description: "AI-powered smartphone with S Pen, 200MP camera, and titanium frame.",
+                image: "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=500",
+                amazonLink: "https://amazon.com/your-affiliate-link-5"
+            },
+            {
+                id: 6,
+                name: "Sony WH-1000XM5",
+                category: "audio",
+                price: "$399",
+                description: "Industry-leading noise cancellation, exceptional sound quality, 30-hour battery.",
+                image: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=500",
+                amazonLink: "https://amazon.com/your-affiliate-link-6"
+            },
+            {
+                id: 7,
+                name: "iPad Pro 12.9\"",
+                category: "accessories",
+                price: "$1,099",
+                description: "M2 chip, Liquid Retina XDR display, works with Apple Pencil and Magic Keyboard.",
+                image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=500",
+                amazonLink: "https://amazon.com/your-affiliate-link-7"
+            },
+            {
+                id: 8,
+                name: "Dell XPS 15",
+                category: "laptops",
+                price: "$1,799",
+                description: "13th Gen Intel Core i7, NVIDIA RTX 4050, stunning InfinityEdge display.",
+                image: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=500",
+                amazonLink: "https://amazon.com/your-affiliate-link-8"
+            },
+            {
+                id: 9,
+                name: "Logitech MX Master 3S",
+                category: "accessories",
+                price: "$99",
+                description: "Premium wireless mouse with quiet clicks, 8K DPI, and ergonomic design.",
+                image: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=500",
+                amazonLink: "https://amazon.com/your-affiliate-link-9"
+            },
+            {
+                id: 10,
+                name: "Google Pixel 8 Pro",
+                category: "smartphones",
+                price: "$999",
+                description: "Google's most advanced AI features, amazing camera, and smooth display.",
+                image: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500",
+                amazonLink: "https://amazon.com/your-affiliate-link-10"
+            },
+            {
+                id: 11,
+                name: "Bose QuietComfort Ultra",
+                category: "audio",
+                price: "$429",
+                description: "World-class noise cancellation with spatial audio and premium comfort.",
+                image: "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=500",
+                amazonLink: "https://amazon.com/your-affiliate-link-11"
+            },
+            {
+                id: 12,
+                name: "Garmin Fenix 7",
+                category: "wearables",
+                price: "$699",
+                description: "Multisport GPS watch with solar charging and advanced training features.",
+                image: "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=500",
+                amazonLink: "https://amazon.com/your-affiliate-link-12"
+            },
+            {
+                id: 13,
+                name: "ASUS ROG Zephyrus G14",
+                category: "laptops",
+                price: "$1,599",
+                description: "Gaming laptop with AMD Ryzen 9, RTX 4060, and AniMe Matrix display.",
+                image: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=500",
+                amazonLink: "https://amazon.com/your-affiliate-link-13"
+            },
+            {
+                id: 14,
+                name: "Magic Keyboard for iPad Pro",
+                category: "accessories",
+                price: "$349",
+                description: "Floating design, backlit keys, trackpad, and USB-C charging.",
+                image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500",
+                amazonLink: "https://amazon.com/your-affiliate-link-14"
+            },
+            {
+                id: 15,
+                name: "JBL Flip 6",
+                category: "audio",
+                price: "$129",
+                description: "Portable Bluetooth speaker with powerful sound and IP67 waterproof rating.",
+                image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500",
+                amazonLink: "https://amazon.com/your-affiliate-link-15"
+            }
+        ];
+
+        // Deals Data with countdown timers
+        const deals = [
+            {
+                id: 101,
+                name: "MacBook Air M2 - Limited Time",
+                category: "laptops",
+                originalPrice: "$1,199",
+                dealPrice: "$949",
+                discount: "21% OFF",
+                description: "Ultra-thin design, M2 chip, all-day battery. Flash sale ends soon!",
+                image: "https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=500",
+                amazonLink: "https://amazon.com/your-deal-link-1",
+                endTime: new Date(Date.now() + 8 * 60 * 60 * 1000) // 8 hours from now
+            },
+            {
+                id: 102,
+                name: "Sony WH-1000XM5 Bundle",
+                category: "audio",
+                originalPrice: "$399",
+                dealPrice: "$299",
+                discount: "25% OFF",
+                description: "Premium noise cancellation + Free carrying case worth $50!",
+                image: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=500",
+                amazonLink: "https://amazon.com/your-deal-link-2",
+                endTime: new Date(Date.now() + 12 * 60 * 60 * 1000) // 12 hours from now
+            },
+            {
+                id: 103,
+                name: "Samsung Galaxy S24 Ultra Deal",
+                category: "smartphones",
+                originalPrice: "$1,299",
+                dealPrice: "$1,099",
+                discount: "15% OFF",
+                description: "Flagship phone with 200MP camera, S Pen, and premium titanium build.",
+                image: "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=500",
+                amazonLink: "https://amazon.com/your-deal-link-3",
+                endTime: new Date(Date.now() + 24 * 60 * 60 * 1000) // 24 hours from now
+            },
+            {
+                id: 104,
+                name: "Apple Watch Series 9 + Band",
+                category: "wearables",
+                originalPrice: "$499",
+                dealPrice: "$379",
+                discount: "24% OFF",
+                description: "Advanced health features, always-on display + Extra sport band FREE!",
+                image: "https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?w=500",
+                amazonLink: "https://amazon.com/your-deal-link-4",
+                endTime: new Date(Date.now() + 6 * 60 * 60 * 1000) // 6 hours from now
+            }
+        ];
+
+        let cart = [];
+        let currentFilter = 'all';
+
+        // Open Cart Modal
+        function openCart() {
+            renderCart();
+            document.getElementById('cartModal').classList.add('active');
+        }
+
+        // Close Cart Modal
+        function closeCart() {
+            document.getElementById('cartModal').classList.remove('active');
+        }
+
+        // Close cart when clicking outside
+        document.getElementById('cartModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCart();
+            }
+        });
+
+        // Add to Cart
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product && !cart.find(item => item.id === productId)) {
+                cart.push(product);
+                updateCartCount();
+                showNotification('Added to cart!');
+            } else if (cart.find(item => item.id === productId)) {
+                showNotification('Already in cart!');
+            }
+        }
+
+        // Remove from Cart
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartCount();
+            renderCart();
+            showNotification('Removed from cart');
+        }
+
+        // Clear Cart
+        function clearCart() {
+            if (cart.length === 0) return;
+            if (confirm('Are you sure you want to clear your cart?')) {
+                cart = [];
+                updateCartCount();
+                renderCart();
+                showNotification('Cart cleared');
+            }
+        }
+
+        // Render Cart Items
+        function renderCart() {
+            const cartItemsDiv = document.getElementById('cartItems');
+            
+            if (cart.length === 0) {
+                cartItemsDiv.innerHTML = `
+                    <div class="cart-empty">
+                        <div class="cart-empty-icon">🛒</div>
+                        <h3>Your cart is empty</h3>
+                        <p>Start shopping to add items to your cart!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const total = cart.reduce((sum, item) => {
+                const price = parseFloat(item.price.replace('$', '').replace(',', ''));
+                return sum + price;
+            }, 0);
+
+            cartItemsDiv.innerHTML = `
+                ${cart.map(item => `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                        <div class="cart-item-details">
+                            <div class="cart-item-category">${item.category}</div>
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">${item.price}</div>
+                        </div>
+                        <button class="cart-item-remove" onclick="removeFromCart(${item.id})">
+                            Remove
+                        </button>
+                    </div>
+                `).join('')}
+                
+                <div class="cart-total">
+                    <span class="cart-total-label">Total:</span>
+                    <span class="cart-total-price">$${total.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
+                </div>
+                
+                <button class="checkout-btn" onclick="checkout()">
+                    Proceed to Amazon Checkout
+                </button>
+                
+                <button class="clear-cart-btn" onclick="clearCart()">
+                    Clear Cart
+                </button>
+            `;
+        }
+
+        // Checkout Function
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+
+            // Create a message with all products
+            let message = 'Items in your cart:\n\n';
+            cart.forEach((item, index) => {
+                message += `${index + 1}. ${item.name} - ${item.price}\n`;
+            });
+            message += '\nYou will be redirected to Amazon for each item.';
+
+            alert(message);
+
+            // Open each Amazon link
+            cart.forEach((item, index) => {
+                setTimeout(() => {
+                    window.open(item.amazonLink, '_blank');
+                }, index * 1000); // Stagger by 1 second each
+            });
+
+            // Clear cart after checkout
+            setTimeout(() => {
+                cart = [];
+                updateCartCount();
+                closeCart();
+                showNotification('Thank you for shopping!');
+            }, cart.length * 1000 + 500);
+        }
+
+        // Show Notification
+        function showNotification(message) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: linear-gradient(135deg, var(--primary), var(--accent));
+                color: var(--dark);
+                padding: 1rem 2rem;
+                border-radius: 25px;
+                font-weight: 700;
+                z-index: 10000;
+                animation: slideInRight 0.3s ease-out;
+                box-shadow: 0 10px 30px var(--glow);
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Remove after 2 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.3s ease-out';
+                setTimeout(() => notification.remove(), 300);
+            }, 2000);
+        }
+
+        // Get related products based on category
+        function getRelatedProducts(productId) {
+            const currentProduct = products.find(p => p.id === productId);
+            if (!currentProduct) return [];
+            
+            // Get products from same category, excluding current product
+            const sameCategory = products.filter(p => 
+                p.category === currentProduct.category && p.id !== productId
+            );
+            
+            // If we have enough from same category, return them
+            if (sameCategory.length >= 4) {
+                return sameCategory.slice(0, 4);
+            }
+            
+            // Otherwise, mix with other products
+            const otherProducts = products.filter(p => 
+                p.category !== currentProduct.category && p.id !== productId
+            );
+            
+            return [...sameCategory, ...otherProducts].slice(0, 4);
+        }
+
+        // Show related products modal
+        function showRelatedProducts(productId) {
+            const modal = document.getElementById('relatedModal');
+            const grid = document.getElementById('relatedProductsGrid');
+            const relatedProducts = getRelatedProducts(productId);
+            
+            grid.innerHTML = relatedProducts.map(product => `
+                <div class="related-card">
+                    <img src="${product.image}" alt="${product.name}">
+                    <div class="related-card-info">
+                        <div class="product-category">${product.category}</div>
+                        <div class="related-card-name">${product.name}</div>
+                        <div class="related-card-price">${product.price}</div>
+                        <button class="related-buy-btn" onclick="buyNow('${product.amazonLink}', ${product.id})">
+                            Buy Now
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            
+            modal.classList.add('active');
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('relatedModal').classList.remove('active');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('relatedModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Render Products
+        function renderProducts(filter = 'all') {
+            const grid = document.getElementById('productsGrid');
+            const filteredProducts = filter === 'all' 
+                ? products 
+                : products.filter(p => p.category === filter);
+
+            grid.innerHTML = filteredProducts.map(product => `
+                <div class="product-card" data-category="${product.category}">
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                    <div class="product-info">
+                        <div class="product-category">${product.category}</div>
+                        <h3 class="product-name">${product.name}</h3>
+                        <p class="product-description">${product.description}</p>
+                        <div class="product-footer">
+                            <span class="product-price">${product.price}</span>
+                            <button class="buy-btn" onclick="buyNow('${product.amazonLink}', ${product.id})">
+                                Buy Now
+                            </button>
+                        </div>
+                        <button class="view-similar-btn" onclick="showRelatedProducts(${product.id})">
+                            You May Also Like →
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filter Products
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                const category = e.target.dataset.category;
+                currentFilter = category;
+                renderProducts(category);
+            });
+        });
+
+        // Buy Now Function (Adds to cart and opens Amazon link)
+        function buyNow(amazonLink, productId) {
+            // Add to cart
+            addToCart(productId);
+            
+            // Optional: Also open Amazon link immediately
+            // Uncomment the line below if you want to open Amazon link right away
+            // window.open(amazonLink, '_blank');
+        }
+
+        // Update Cart Count
+        function updateCartCount() {
+            document.querySelector('.cart-count').textContent = cart.length;
+        }
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Initialize
+        renderProducts();
+
+        // Render Deals
+        function renderDeals() {
+            const grid = document.getElementById('dealsGrid');
+            
+            grid.innerHTML = deals.map(deal => `
+                <div class="deal-card">
+                    <div class="deal-badge">${deal.discount}</div>
+                    <img src="${deal.image}" alt="${deal.name}" class="deal-image">
+                    <div class="deal-info">
+                        <div class="deal-timer">
+                            <div class="timer-label">⏰ Deal Ends In</div>
+                            <div class="timer-display" id="timer-${deal.id}">
+                                <div class="timer-unit">
+                                    <span class="timer-value">00</span>
+                                    <span class="timer-text">Hours</span>
+                                </div>
+                                <div class="timer-unit">
+                                    <span class="timer-value">00</span>
+                                    <span class="timer-text">Minutes</span>
+                                </div>
+                                <div class="timer-unit">
+                                    <span class="timer-value">00</span>
+                                    <span class="timer-text">Seconds</span>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="deal-name">${deal.name}</h3>
+                        <p class="deal-description">${deal.description}</p>
+                        <div class="deal-prices">
+                            <span class="original-price">${deal.originalPrice}</span>
+                            <span class="deal-price">${deal.dealPrice}</span>
+                            <span class="savings">${deal.discount}</span>
+                        </div>
+                        <button class="deal-buy-btn" onclick="buyNow('${deal.amazonLink}', ${deal.id})">
+                            🔥 Grab This Deal
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            // Start countdown timers
+            deals.forEach(deal => {
+                updateTimer(deal.id, deal.endTime);
+            });
+        }
+
+        // Update Countdown Timer
+        function updateTimer(dealId, endTime) {
+            const timerInterval = setInterval(() => {
+                const now = new Date().getTime();
+                const distance = endTime - now;
+
+                if (distance < 0) {
+                    clearInterval(timerInterval);
+                    document.getElementById(`timer-${dealId}`).innerHTML = '<span style="color: var(--secondary);">DEAL EXPIRED</span>';
+                    return;
+                }
+
+                const hours = Math.floor(distance / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById(`timer-${dealId}`).innerHTML = `
+                    <div class="timer-unit">
+                        <span class="timer-value">${hours.toString().padStart(2, '0')}</span>
+                        <span class="timer-text">Hours</span>
+                    </div>
+                    <div class="timer-unit">
+                        <span class="timer-value">${minutes.toString().padStart(2, '0')}</span>
+                        <span class="timer-text">Minutes</span>
+                    </div>
+                    <div class="timer-unit">
+                        <span class="timer-value">${seconds.toString().padStart(2, '0')}</span>
+                        <span class="timer-text">Seconds</span>
+                    </div>
+                `;
+            }, 1000);
+        }
+
+        // Initialize deals
+        renderDeals();
+
+        // Contact Form Handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
+
+            // Show loading state
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+
+            // Simulate form submission (replace with your actual endpoint)
+            setTimeout(() => {
+                // Success notification
+                showNotification('Message sent successfully! We\'ll get back to you soon.');
+                
+                // Reset form
+                this.reset();
+                
+                // Reset button
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+
+                // Log form data (in production, send to your backend)
+                console.log('Form submitted:', formData);
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
